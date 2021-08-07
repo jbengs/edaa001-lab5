@@ -152,9 +152,9 @@ public class BinarySearchTree<E> {
 
 		//not private, because acces needed in BSTVisualizer.java
 		static class BinaryNode<E> {
-			private E element;
-			private BinaryNode<E> left;
-			private BinaryNode<E> right;
+			E element;
+			BinaryNode<E> left;
+			BinaryNode<E> right;
 
 			private BinaryNode(E element) {
 				this.element = element;
