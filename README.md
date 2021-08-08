@@ -1,6 +1,8 @@
 # Laboration 5
 
-A lab to practice implementation of binary trees
+A lab to practice implementation of binary trees.
+
+By Joel Bengs
 
 ## edaa-001
 
