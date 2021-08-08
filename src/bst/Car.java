@@ -11,4 +11,8 @@ public class Car {
         return reg;
     }
 
+    @Override
+    public String toString() {
+        return "" + reg;
+    }
 }

@@ -2,6 +2,7 @@ package bst;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 
 
 public class BinarySearchTree<E> {
@@ -130,14 +131,20 @@ public class BinarySearchTree<E> {
 		 * Builds a complete tree from the elements in the tree.
 		 */
 		public void rebuild () {
-
+			ArrayList<E> sortedlist = new ArrayList<>();
+			toArray(root, sortedlist);
+			root = buildTree(sortedlist, 0, sortedlist.size()-1);
 		}
 
 		/*
 		 * Adds all elements from the tree rooted at n in inorder to the list sorted.
 		 */
 		private void toArray (BinaryNode < E > n, ArrayList < E > sorted){
-
+			if (n != null) {
+				toArray(n.left, sorted);
+				sorted.add(n.element);
+				toArray(n.right, sorted);
+			}
 		}
 
 		/*
@@ -147,10 +154,17 @@ public class BinarySearchTree<E> {
 		 * Returns the root of tree.
 		 */
 		private BinaryNode<E> buildTree(ArrayList<E> sorted, int first, int last){
-			return null;
+			if (first > last) {
+				return null;
+			}
+			int mid = first + (last - first)/2;
+			BinaryNode<E> root = new BinaryNode<>(sorted.get(mid));
+			root.left = buildTree(sorted, first, mid-1);
+			root.right = buildTree(sorted, mid+1, last);
+			return root;
 		}
 
-		//not private, because acces needed in BSTVisualizer.java
+		//not private, because access needed in BSTVisualizer.java
 		static class BinaryNode<E> {
 			E element;
 			BinaryNode<E> left;
